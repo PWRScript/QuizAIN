@@ -1,0 +1,461 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Assets/Fonts/Azonix.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/Images/terreno_teste.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Close.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Startup.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Popup.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/ServerControl.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/ClientControl.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Images/kick_player.png" type="Texture" id=8]
+[ext_resource path="res://Scripts/Game.gd" type="Script" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 36
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=4]
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 1 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 10, 305.5 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 489, 181 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 30
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=11]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 28
+font_data = ExtResource( 1 )
+
+[node name="Game" type="Node"]
+script = ExtResource( 4 )
+
+[node name="LoadingScreen" type="Control" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+theme = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TransparentFilter" type="ColorRect" parent="LoadingScreen"]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0.0470588, 0.00784314, 0.00784314, 0.627451 )
+
+[node name="Title" type="Label" parent="LoadingScreen"]
+margin_top = 50.0
+margin_right = 1024.0
+margin_bottom = 207.0
+custom_fonts/font = SubResource( 3 )
+text = "O PAPEL DAS ORGANIZAÇÕES 
+INTERNACIONAIS "
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="LoadingScreen"]
+margin_left = 162.0
+margin_top = 500.0
+margin_right = 862.0
+margin_bottom = 541.0
+rounded = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DetailedText" type="Label" parent="LoadingScreen"]
+margin_left = 162.0
+margin_top = 480.0
+margin_right = 862.0
+margin_bottom = 500.0
+text = "INICIANDO ENGINE..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenu" type="Control" parent="."]
+visible = false
+margin_right = 1024.0
+margin_bottom = 600.0
+theme = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TransparentFilter" type="ColorRect" parent="MainMenu"]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0.0470588, 0.00784314, 0.00784314, 0.627451 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="MainMenu"]
+margin_top = 50.0
+margin_right = 1024.0
+margin_bottom = 207.0
+custom_fonts/font = SubResource( 3 )
+text = "O PAPEL DAS ORGANIZAÇÕES 
+INTERNACIONAIS "
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Separator" type="VSeparator" parent="MainMenu"]
+margin_left = 510.0
+margin_top = 211.0
+margin_right = 514.0
+margin_bottom = 515.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ServerControl" type="Control" parent="MainMenu"]
+script = ExtResource( 6 )
+
+[node name="Title" type="Label" parent="MainMenu/ServerControl"]
+margin_top = 211.0
+margin_right = 512.0
+margin_bottom = 229.0
+custom_fonts/font = SubResource( 5 )
+text = "Servidor dedicado"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PortLabel" type="Label" parent="MainMenu/ServerControl"]
+margin_left = 96.0
+margin_top = 245.0
+margin_right = 152.0
+margin_bottom = 259.0
+rect_pivot_offset = Vector2( 605, -38 )
+text = "Porta:"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Port" type="SpinBox" parent="MainMenu/ServerControl"]
+margin_left = 96.0
+margin_top = 263.0
+margin_right = 170.0
+margin_bottom = 287.0
+min_value = 1025.0
+max_value = 65535.0
+value = 65333.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OnlinePlayersLabel" type="Label" parent="MainMenu/ServerControl"]
+margin_left = 98.0
+margin_top = 305.0
+margin_right = 435.0
+margin_bottom = 319.0
+text = "Jogadores Online:"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OnlinePlayers" type="ItemList" parent="MainMenu/ServerControl"]
+margin_left = 94.0
+margin_top = 323.0
+margin_right = 431.0
+margin_bottom = 462.0
+select_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="MainMenu/ServerControl"]
+margin_left = 95.0
+margin_top = 481.0
+margin_right = 378.0
+margin_bottom = 510.0
+toggle_mode = true
+text = "Iniciar Servidor"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonKick" type="Button" parent="MainMenu/ServerControl"]
+margin_left = 399.0
+margin_top = 481.0
+margin_right = 428.0
+margin_bottom = 510.0
+disabled = true
+icon = ExtResource( 8 )
+expand_icon = true
+
+[node name="ClientControl" type="Control" parent="MainMenu"]
+script = ExtResource( 7 )
+
+[node name="Title" type="Label" parent="MainMenu/ClientControl"]
+margin_left = 512.0
+margin_top = 211.0
+margin_right = 1024.0
+margin_bottom = 229.0
+custom_fonts/font = SubResource( 5 )
+text = "CLIENTE"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Host" type="LineEdit" parent="MainMenu/ClientControl"]
+margin_left = 545.0
+margin_top = 263.0
+margin_right = 831.0
+margin_bottom = 287.0
+text = "127.0.0.1"
+clear_button_enabled = true
+placeholder_text = "Endereço IP ou Nome de Domínio"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Port" type="SpinBox" parent="MainMenu/ClientControl"]
+margin_left = 844.0
+margin_top = 263.0
+margin_right = 918.0
+margin_bottom = 287.0
+min_value = 1.0
+max_value = 65535.0
+value = 65333.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PortLabel" type="Label" parent="MainMenu/ClientControl"]
+margin_left = 844.0
+margin_top = 245.0
+margin_right = 900.0
+margin_bottom = 259.0
+rect_pivot_offset = Vector2( 605, -38 )
+text = "Porta:"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HostLabel" type="Label" parent="MainMenu/ClientControl"]
+margin_left = 545.0
+margin_top = 245.0
+margin_right = 608.0
+margin_bottom = 259.0
+rect_pivot_offset = Vector2( 129, -138 )
+text = "Endereço:"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UsernameLabel" type="Label" parent="MainMenu/ClientControl"]
+margin_left = 545.0
+margin_top = 350.0
+margin_right = 615.0
+margin_bottom = 364.0
+rect_pivot_offset = Vector2( 129, -138 )
+text = "Username:"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Username" type="LineEdit" parent="MainMenu/ClientControl"]
+margin_left = 545.0
+margin_top = 367.0
+margin_right = 913.0
+margin_bottom = 391.0
+max_length = 12
+clear_button_enabled = true
+placeholder_text = "Escolhe o nome com que pretendes aparecer no jogo  :)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Connect" type="Button" parent="MainMenu/ClientControl"]
+margin_left = 552.0
+margin_top = 480.0
+margin_right = 908.0
+margin_bottom = 509.0
+text = "Conectar ao Servidor"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Game" type="Node2D" parent="."]
+visible = false
+script = ExtResource( 9 )
+
+[node name="TransparentFilter" type="ColorRect" parent="Game"]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0.0470588, 0.00784314, 0.00784314, 0.627451 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Players" type="Node" parent="Game"]
+
+[node name="Terreno" type="StaticBody2D" parent="Game"]
+
+[node name="Terreno" type="Sprite" parent="Game/Terreno"]
+position = Vector2( 513, 497 )
+scale = Vector2( 1.69667, 0.96 )
+texture = ExtResource( 2 )
+
+[node name="TerrenoLeft" type="CollisionPolygon2D" parent="Game/Terreno"]
+polygon = PoolVector2Array( 4, 494, 7, 494, 7, 493, 10, 493, 10, 492, 15, 492, 15, 491, 25, 491, 25, 490, 29, 490, 29, 489, 32, 489, 32, 488, 34, 488, 34, 488, 47, 488, 48, 487, 51, 487, 51, 486, 53, 486, 67, 486, 68, 487, 81, 487, 81, 488, 93, 488, 94, 487, 107, 487, 108, 488, 114, 488, 115, 489, 117, 488, 125, 488, 132, 488, 133, 487, 137, 486, 142, 486, 144, 485, 146, 485, 149, 484, 151, 484, 154, 483, 162, 483, 175, 483, 176, 484, 179, 484, 180, 484, 181, 485, 182, 485, 183, 486, 190, 486, 192, 487, 207, 487, 224, 487, 225, 486, 235, 486, 236, 487, 238, 488, 253, 488, 254, 489, 257, 489, 259, 491, 273, 491, 273, 490, 287, 490, 306, 490, 306, 489, 313, 489, 314, 490, 318, 490, 319, 491, 320, 492, 337, 492, 337, 493, 347, 493, 347, 494, 349, 494, 350, 495, 361, 495, 362, 495, 363, 496, 365, 497, 366, 499, 367, 499, 367, 501, 369, 502, 371, 503, 371, 514, 368, 516, 366, 520, 363, 525, 358, 529, 330, 568, 330, 576, 325, 576, 319, 561, 311, 556, 310, 558, 300, 558, 285, 567, 275, 563, 251, 576, 247, 591, 244, 594, 214, 561, 181, 592, 126, 592, 124, 576, 113, 575, 96, 586, 70, 553, 55, 571, 49, 552, 41, 545, 36, 552, 26, 551, 22, 543, 18, 538, 12, 537, 6, 541, 4, 541 )
+one_way_collision = true
+
+[node name="TerrenoRight" type="CollisionPolygon2D" parent="Game/Terreno"]
+polygon = PoolVector2Array( 758, 521, 758, 530, 793, 566, 797, 576, 797, 579, 807, 581, 815, 577, 828, 564, 843, 593, 907, 593, 914, 577, 935, 560, 952, 556, 963, 579, 965, 581, 970, 575, 977, 571, 989, 579, 999, 575, 1006, 593, 1022, 592, 1022, 500, 1018, 499, 1013, 496, 986, 496, 983, 498, 973, 498, 971, 499, 950, 499, 948, 498, 944, 497, 896, 497, 892, 496, 880, 496, 876, 497, 857, 497, 824, 501, 819, 499, 812, 499, 810, 500, 802, 500, 779, 505, 770, 510, 763, 514, 762, 517 )
+one_way_collision = true
+
+[node name="TerrenoRightLeft" type="CollisionPolygon2D" parent="Game/Terreno"]
+polygon = PoolVector2Array( 591, 508, 591, 515, 592, 516, 592, 519, 594, 521, 596, 524, 600, 524, 600, 522, 602, 521, 602, 528, 618, 555, 627, 559, 629, 557, 630, 550, 638, 545, 666, 581, 671, 581, 672, 577, 681, 561, 685, 562, 685, 567, 693, 566, 708, 549, 710, 545, 712, 545, 714, 544, 716, 541, 718, 539, 720, 536, 721, 533, 723, 531, 726, 531, 728, 530, 732, 528, 732, 525, 736, 524, 739, 520, 739, 509, 738, 508, 736, 506, 733, 505, 732, 503, 727, 500, 726, 500, 724, 499, 722, 498, 719, 498, 717, 497, 713, 497, 705, 497, 704, 496, 681, 496, 680, 497, 676, 497, 675, 498, 665, 497, 660, 497, 657, 496, 633, 496, 632, 497, 627, 497, 625, 498, 622, 498, 621, 498, 621, 499, 615, 499, 614, 499, 603, 500, 599, 502, 599, 503, 598, 503, 597, 504, 596, 505, 594, 506, 593, 507 )
+one_way_collision = true
+
+[node name="TerrenoLeftRight" type="CollisionPolygon2D" parent="Game/Terreno"]
+polygon = PoolVector2Array( 419, 501, 422, 500, 427, 497, 433, 497, 438, 496, 446, 495, 465, 495, 467, 496, 470, 496, 473, 497, 489, 498, 513, 499, 515, 501, 520, 501, 530, 507, 531, 511, 512, 541, 506, 535, 499, 544, 492, 540, 472, 561, 465, 563, 447, 532, 437, 542, 426, 518, 423, 518, 421, 516, 421, 506, 419, 506 )
+one_way_collision = true
+
+[node name="BorderLeft" type="StaticBody2D" parent="Game"]
+
+[node name="BorderCollider" type="CollisionShape2D" parent="Game/BorderLeft"]
+position = Vector2( -10, 295 )
+shape = SubResource( 8 )
+
+[node name="BorderRight" type="StaticBody2D" parent="Game"]
+position = Vector2( 1044, 3 )
+
+[node name="BorderCollider" type="CollisionShape2D" parent="Game/BorderRight"]
+position = Vector2( -10, 295 )
+shape = SubResource( 8 )
+
+[node name="Board" type="StaticBody2D" parent="Game"]
+
+[node name="BoardExternal" type="ColorRect" parent="Game/Board"]
+margin_left = 18.0
+margin_top = 13.0
+margin_right = 995.0
+margin_bottom = 384.0
+color = Color( 0.380392, 0.356863, 0.164706, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BoardInternal" type="ColorRect" parent="Game/Board"]
+margin_left = 42.0
+margin_top = 30.0
+margin_right = 971.0
+margin_bottom = 369.0
+color = Color( 0.113725, 0.25098, 0.254902, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BoardCollider" type="CollisionShape2D" parent="Game/Board"]
+position = Vector2( 506, 194 )
+shape = SubResource( 9 )
+
+[node name="Exit" type="Button" parent="Game"]
+margin_left = 891.0
+margin_top = 13.0
+margin_right = 1015.0
+margin_bottom = 62.0
+custom_fonts/font = SubResource( 10 )
+text = "SAIR"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ErrorDialog" type="PopupDialog" parent="."]
+margin_left = 59.0
+margin_top = 28.0
+margin_right = 977.0
+margin_bottom = 553.0
+popup_exclusive = true
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Information" type="Label" parent="ErrorDialog"]
+margin_left = 107.0
+margin_top = 46.0
+margin_right = 800.0
+margin_bottom = 140.0
+custom_colors/font_color = Color( 0.854902, 0.305882, 0.305882, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "ocorreu um err0
+"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Information2" type="Label" parent="ErrorDialog"]
+margin_left = 107.0
+margin_top = 107.0
+margin_right = 800.0
+margin_bottom = 252.0
+custom_fonts/font = SubResource( 11 )
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Close" type="Button" parent="ErrorDialog"]
+margin_left = 471.0
+margin_top = 395.0
+margin_right = 871.0
+margin_bottom = 465.0
+custom_fonts/font = SubResource( 7 )
+text = "Fechar jogo"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="Button" parent="ErrorDialog"]
+margin_left = 51.0
+margin_top = 395.0
+margin_right = 451.0
+margin_bottom = 465.0
+custom_fonts/font = SubResource( 7 )
+text = "Menu Principal"
+__meta__ = {
+"_edit_use_anchors_": false
+}
